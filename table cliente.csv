@@ -1,2 +1,3 @@
 "idcliente","nome","cpf","rg","data_nascimiento","genero","profissao","nacionalidade","logradouro","numero","complemanto","bairro","municipipo","uf","observacoes"
 1,"Manoel","88828383821","32323","2001-01-30","M","Estudante","brasileira","Rua Joaquim Nabuco","23","casa","Ciudade Nova","Porto União","SC",NULL
+2,"Geraldo","12343299929","56565","1987-01-04","M","Ingenheiro","brasileira","Rua as Lima","200","Ap","Centro","Poro Uniao","SC",NULL
