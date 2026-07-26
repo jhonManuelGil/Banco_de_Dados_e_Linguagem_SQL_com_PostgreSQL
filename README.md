@@ -65,28 +65,9 @@ Demonstrar o domínio prático e teórico em **Engenharia/Gestão de Dados** e *
 
 ---
 
-## 📂 Estrutura de Pastas Sugerida
 
-```text
-.
-├── 01-modelagem-e-normalizacao/
-│   ├── modelo-conceitual.png
-│   └── exercicios-formas-normais.md
-├── 02-sql-ddl-dml/
-│   ├── criacao-tabelas-restricoes.sql
-│   └── insercao-e-manipulacao.sql
-├── 03-consultas-e-joins/
-│   ├── agregacao-dados.sql
-│   └── juncoes-complexas.sql
-├── 04-programacao-plpgsql/
-│   ├── functions-procedures.sql
-│   └── triggers-automacao.sql
-├── 05-administracao-dba/
-│   ├── controle-usuarios-permissoes.sql
-│   └── rotinas-backup-restore.sql
-└── README.md
 
------
+
 
 
 
