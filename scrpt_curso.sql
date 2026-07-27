@@ -1,5 +1,5 @@
 
--- Script Database: pedido
+-- ###### Script Database: pedido ######
 
 create table cliente(
     idcliente integer not null,
@@ -33,9 +33,8 @@ values(1, 'Manoel', '88828383821', '32323', '2001-01-30', 'M', 'Estudante', 'bra
 insert into cliente (idcliente, nome, cpf, rg, data_nascimiento, genero, profissao, nacionalidade, logradouro, numero, complemanto, bairro, municipipo,	uf)
 values(2, 'Geraldo', '12343299929', '56565', '1987-01-04', 'M', 'Ingenheiro', 'brasileira', 'Rua as Lima', '200', 'Ap', 'Centro', 'Poro Uniao', 'SC')
 
-insert into cliente (
-    id, nome, telefone, RG, data_nascimento, sexo, profissao, nacionalidade, logradouro, numero, complemento, bairro, cidade, uf
-) VALUES
+insert into cliente (idcliente, nome, cpf, rg, data_nascimiento, genero, profissao, nacionalidade, logradouro, numero, complemanto, bairro, municipipo,	uf)
+VALUES
 (3, 'Carlos', '87732323227', '55463', '1967-10-01', 'M', 'Pedreiro', 'Brasileira', 'Rua das Laranjeiras', 300, 'Apart.', 'Cto.', 'Canoinhas', 'SC'),
 (4, 'Adriana', '12321222122', '98777', '1989-09-10', 'F', 'Jornalista', 'Brasileira', 'Rua das Limas', 240, 'Casa', 'São Pedro', 'Porto Vitória', 'PR'),
 (5, 'Amanda', '99982838828', '28382', '1991-03-04', 'F', 'Jorn.', 'Italiana', 'Av. Central', 100, NULL, 'São Pedro', 'General Carneiro', 'PR'),
@@ -51,5 +50,59 @@ insert into cliente (
 (15, 'Jessica', NULL, NULL, NULL, 'F', 'Estudante', NULL, NULL, NULL, NULL, NULL, 'União da Vitória', 'PR');
 
 
-
 select * from cliente;
+
+-- ###### Consulta de filtro de valor de dados ######
+
+Select * from cliente;
+
+select nome, data_nascimiento from cliente;
+
+select nome, data_nascimiento as "Data de nascimento" from cliente;
+select data_nascimiento as "data_nascimento" from cliente;
+
+-- alterar nome da coluna
+ALTER TABLE cliente RENAME COLUMN data_nascimiento TO data_nascimento;
+
+select cpf, rg from cliente;
+
+-- concatenar 
+select 'CPF: ' || cpf ||  'rg: ' || rg as "CPF e RG" from cliente;
+
+
+-- Seleção do número determinado de registro
+
+select * from cliente limit 5;
+
+select nome, data_nascimento from cliente where data_nascimento > '2000-01-01';
+
+select nome from cliente where nome like 'C%';
+
+select nome from cliente where nome like '%c%';
+
+select nome, data_nascimento from cliente where data_nascimento between '1990-01-01' and '1998-01-01';
+
+select nome, rg from cliente;
+
+select nome, rg from cliente where rg is null;
+
+select nome from cliente order by nome;
+
+select nome from cliente order by nome desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
