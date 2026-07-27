@@ -6,7 +6,7 @@ create table cliente(
 	nome varchar(50) not null,
 	cpf char(11), -- not null ocupacional de acordo com a empresa para cpf
 	rg varchar(15),
-	data_nascimiento date,
+	data_nascimiento date, -- correção data_nascimento
 	genero char(1),
 	profissao varchar(30),
 	nacionalidade varchar(30),
@@ -59,10 +59,13 @@ Select * from cliente;
 select nome, data_nascimiento from cliente;
 
 select nome, data_nascimiento as "Data de nascimento" from cliente;
+
 select data_nascimiento as "data_nascimento" from cliente;
 
 -- alterar nome da coluna
 ALTER TABLE cliente RENAME COLUMN data_nascimiento TO data_nascimento;
+
+ALTER TABLE cliente RENAME COLUMN municipipo TO municipio;
 
 select cpf, rg from cliente;
 
@@ -90,18 +93,44 @@ select nome from cliente order by nome;
 
 select nome from cliente order by nome desc;
 
+select nome from cliente order by nome asc;
+
+
+-- ========== Exercícios – consultas simples ==========
+
+select nome, profissao from cliente order by nome desc;
+
+select nome from cliente where nome like '%r%';
+
+select nome from cliente where nome like 'C%'
+
+select nome from cliente where nome like '%a'
+
+select nome from cliente where bairro like '%Centro%'
+
+select nome from cliente where complemanto  like 'A%'
+
+select nome from cliente where genero like 'F'
+
+select nome from cliente where cpf is null;
+
+select nome, profissao from cliente order by nome asc;
+
+select nome, nacionalidade from cliente where nacionalidade like 'Brasileira';
+
+select nome, numero from cliente where numero is not null;
+
+select nome, municipipo from cliente where municipipo like 'São Paulo';
+
+select nome, data_nascimento from cliente where data_nascimento between '200-01-01' and '2002-01-01';
+
+select 'CPF: ' || cpf ||  'rg: ' || rg as "CPF e RG" from cliente;
+
+select 'nome: ' || nome || 'logradouro: ' || logradouro || 'numero: ' || numero || 'complemanto: ' || complemanto || 'bairro: ' || bairro || 'municipio: ' || municipio || 'UF: ' || UF as "nome, logradouro, numero, complemanto, bairro, municipio, UF" from cliente;    
 
 
 
-
-
-
-
-
-
-
-
-
+Select * from cliente;
 
 
 
