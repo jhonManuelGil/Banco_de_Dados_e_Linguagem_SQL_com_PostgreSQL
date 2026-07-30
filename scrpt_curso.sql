@@ -172,19 +172,19 @@ delete from cliente where idcliente = 16;
 1 Insira os dados abaixo na tabela de clientes
 ----
 2 Altere os dados do cliente Maicon
-O CPF para 45390569432
-O gênero para M
-A nacionalidade para Brasileira
-O UF para SC
+  O CPF para 45390569432
+  O gênero para M
+  A nacionalidade para Brasileira
+  O UF para SC
 -------
 3 Altere os dados do cliente Getúlio
-A data de nascimento para 01/04/1978
-O gênero para M
+  A data de nascimento para 01/04/1978
+  O gênero para M
 ------
 3 Altere os dados da cliente Sandra
-O gênero para F
-4 A profissão para Professora
-O número para 123
+  O gênero para F
+  4 A profissão para Professora
+  O número para 123
 ----
 5 Apague o cliente Maicon
 -----
@@ -193,7 +193,7 @@ O número para 123
 
 */
 
-insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero, profissao, nacionalidade, logradouro, numero, complemanto, bairro, municipio, uf)
+/*1*/insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero, profissao, nacionalidade, logradouro, numero, complemanto, bairro, municipio, uf)
 VALUES 
 (16, 'Maicon', '12349596421', '1234', '10/10/1965', 'F', 'null', 'null', 'null', null, 'null.', 'hull.', 'Florianópolis', 'PR'),					
 (17, 'Getúlio', 'null', '4631', '10/10/1958', 'F', 'Estudante', 'Brasileira', 'Rua Central', 343, 'Apartamento.', 'Centro.', 'Curitiba', 'SC'),						
@@ -201,13 +201,17 @@ VALUES
                         
 Select * from cliente;
 
-update cliente set nome = 'Maicon', cpf ='45390569432', genero = 'M', nacionalidade = 'Brasileira', uf = 'SC' where idcliente = 16; 
+/*2*/update cliente set nome = 'Maicon', cpf ='45390569432', genero = 'M', nacionalidade = 'Brasileira', uf = 'SC' where idcliente = 16; 
 
-update cliente set nome = 'Getúlio', genero = 'M', data_nascimento ='01/04/1978' where idcliente = 17; 
+/*3*/update cliente set nome = 'Getúlio', genero = 'M', data_nascimento ='01/04/1978' where idcliente = 17; 
 
-update cliente set nome = 'Sandra', genero = 'F', profissao ='Professora', numero = '123' where idcliente = 18; 
+/*4*/update cliente set nome = 'Sandra', genero = 'F', profissao ='Professora', numero = '123' where idcliente = 18; 
 
-delete from cliente where idcliente in (16, 18); -- se elimina os dois
+/*5*/delete from cliente where idcliente = 16;
+
+/*6*/delete from cliente where idcliente = 18;
+
+/*5 e 6*/delete from cliente where idcliente in (16, 18); -- se elimina os dois
 
 -- ========== Fim ==========
 
