@@ -98,39 +98,209 @@ select nome from cliente order by nome asc;
 
 -- ========== Exercícios – consultas simples ==========
 
-select nome, profissao from cliente order by nome desc;
+/* Exercícios – consultas simples
 
-select nome from cliente where nome like '%r%';
+1 O nome, o gênero e a profissão de todos os clientes, ordenado pelo nome em ordem decrescente
+2 Os clientes que tenham a letra “R” no nome
+3 Os clientes que o nome inicia com a letra “C”
+4 Os clientes que o nome termina com a letra “A”
+5 Os clientes que moram no bairro “Centro”
+6 Os clientes que moram em complementos que iniciam com a letra “A”
+Somente os clientes do sexo feminino
+7 Os clientes que não informaram o CPF
+8 O nome e a profissão dos clientes, ordenado em ordem crescente pelo nome da profissão
+9 Os clientes de nacionalidade “Brasileira”
+10 Os clientes que informaram o número da residência
+11 Os clientes que moram em Santa Catarina
+12 Os clientes que nasceram entre 01/01/2000 e 01/01/2002
+13 O nome do cliente e o logradouro, número, complemento, bairro, município e UF concatenado de todos os clientes
 
-select nome from cliente where nome like 'C%'
+*/
 
-select nome from cliente where nome like '%a'
 
-select nome from cliente where bairro like '%Centro%'
 
-select nome from cliente where complemanto  like 'A%'
+/*1*/ select nome, profissao from cliente order by nome desc;
 
-select nome from cliente where genero like 'F'
+/*2*/ select nome from cliente where nome like '%r%';
 
-select nome from cliente where cpf is null;
+/*3*/select nome from cliente where nome like 'C%'
 
-select nome, profissao from cliente order by nome asc;
+/*4*/select nome from cliente where nome like '%a'
 
-select nome, nacionalidade from cliente where nacionalidade like 'Brasileira';
+/*5*/select nome, bairro from cliente where bairro = 'Centro' or bairro = 'Cto.' or bairro = 'Ctr.';
 
-select nome, numero from cliente where numero is not null;
+/*6*/select nome, complemanto from cliente where complemanto  like 'A%'
 
-select nome, municipipo from cliente where municipipo like 'São Paulo';
+/*7*/select nome, genero from cliente where genero like 'F'
 
-select nome, data_nascimento from cliente where data_nascimento between '200-01-01' and '2002-01-01';
+/*8*/select nome, cpf from cliente where cpf is null;
 
-select 'CPF: ' || cpf ||  'rg: ' || rg as "CPF e RG" from cliente;
+/*9*/select nome, profissao from cliente order by profissao asc;
 
-select 'nome: ' || nome || 'logradouro: ' || logradouro || 'numero: ' || numero || 'complemanto: ' || complemanto || 'bairro: ' || bairro || 'municipio: ' || municipio || 'UF: ' || UF as "nome, logradouro, numero, complemanto, bairro, municipio, UF" from cliente;    
+/*10*/select nome, nacionalidade from cliente where nacionalidade like 'Brasil%';
+
+/*11*/select nome, numero from cliente where numero is not null;
+
+/*12*/select nome, uf from cliente where uf like 'SC';
+
+/*13*/ select nome, data_nascimento from cliente where data_nascimento between '200-01-01' and '2002-01-01';
+
+/*14*/select 'nome: ' || nome || ' / logradouro: ' || logradouro || ' / numero: ' || numero || ' / complemanto: ' || complemanto || ' / bairro: ' || bairro || ' / municipio: ' || municipio || ' / UF: ' || UF  from cliente ;    
 
 
 
 Select * from cliente;
+ 
+-- ========== Fim ==========
+
+
+Select * from cliente;
+
+
+
+update cliente set nome = 'Teste' where idcliente = 1; -- Manoel para Teste siempre indicar o nomer do cliente
+
+update cliente set nome = 'Adriano', genero = 'M', numero ='241' where idcliente = 4; 
+
+insert into cliente (idcliente, nome) values (16, 'João');
+
+delete from cliente where idcliente = 16;
+
+
+-- ========== Exercícios – comandos update e delete ==========
+/*
+1 Insira os dados abaixo na tabela de clientes
+----
+2 Altere os dados do cliente Maicon
+O CPF para 45390569432
+O gênero para M
+A nacionalidade para Brasileira
+O UF para SC
+-------
+3 Altere os dados do cliente Getúlio
+A data de nascimento para 01/04/1978
+O gênero para M
+------
+3 Altere os dados da cliente Sandra
+O gênero para F
+4 A profissão para Professora
+O número para 123
+----
+5 Apague o cliente Maicon
+-----
+6 Apague a cliente Sandra
+
+
+*/
+
+insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero, profissao, nacionalidade, logradouro, numero, complemanto, bairro, municipio, uf)
+VALUES 
+(16, 'Maicon', '12349596421', '1234', '10/10/1965', 'F', 'null', 'null', 'null', null, 'null.', 'hull.', 'Florianópolis', 'PR'),					
+(17, 'Getúlio', 'null', '4631', '10/10/1958', 'F', 'Estudante', 'Brasileira', 'Rua Central', 343, 'Apartamento.', 'Centro.', 'Curitiba', 'SC'),						
+(18, 'Sandra', 'null', 'null', '18/10/1989', 'M', 'Professor', 'Italiana', 'null', 12, 'Bloco A.', 'null.', 'null', 'null')
+                        
+Select * from cliente;
+
+update cliente set nome = 'Maicon', cpf ='45390569432', genero = 'M', nacionalidade = 'Brasileira', uf = 'SC' where idcliente = 16; 
+
+update cliente set nome = 'Getúlio', genero = 'M', data_nascimento ='01/04/1978' where idcliente = 17; 
+
+update cliente set nome = 'Sandra', genero = 'F', profissao ='Professora', numero = '123' where idcliente = 18; 
+
+delete from cliente where idcliente in (16, 18); -- se elimina os dois
+
+-- ========== Fim ==========
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
