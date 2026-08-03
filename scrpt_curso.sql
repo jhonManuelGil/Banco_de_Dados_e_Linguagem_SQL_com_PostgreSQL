@@ -67,6 +67,8 @@ ALTER TABLE cliente RENAME COLUMN data_nascimiento TO data_nascimento;
 
 ALTER TABLE cliente RENAME COLUMN municipipo TO municipio;
 
+ALTER TABLE cliente RENAME COLUMN complemanto TO complemento; 
+
 select cpf, rg from cliente;
 
 -- concatenar 
@@ -213,45 +215,88 @@ Select * from cliente;
 
 /*5 e 6*/delete from cliente where idcliente in (16, 18); -- se elimina os dois
 
--- ========== Fim ==========
+-- ========== Exercícios Fim ==========
+
+
+
+
+-- ========== ========== CREAÇAO TABELA PROFISSÂO ========== ==========   
+
+
+create table profissao (
+   idprofissao integer not null,
+   nome varchar(30) not null,
+
+   constraint pk_prf_idprofissao primary key (idprofissao),
+   constraint un_prf_nome unique (nome)
+);
+
+
+select * from profissao;
+
+insert into profissao (idprofissao, nome)
+values (1, 'Estudante');
+
+insert into profissao (idprofissao, nome)
+values (2, 'Ingenheiro')
+
+insert into profissao (idprofissao, nome)
+values (3, 'Pedreiro')
+
+insert into profissao (idprofissao, nome)
+values (4, 'Jornalista')
+
+insert into profissao (idprofissao, nome)
+values (5, 'Professor')
+
+
+
+
+-- ========== ========== CREAÇAO TABELA nacionalidade ========== ==========   
+
+create table nacionalidade(
+   idnacionalidade integer not null,
+   nome varchar(30) not null,
+
+   constraint pk_ncn_idnacionalidade primary key (idnacionalidade),
+   constraint un_ncn_nome unique (nome)
+);
+
+
+insert into nacionalidade (idnacionalidade, nome)
+values (1, 'Brasileira');
+
+insert into nacionalidade (idnacionalidade, nome)
+values (2, 'Italiana'),
+(3, 'Norte-americana'),
+(4, 'Alemã');
+
+select * from complemanto;
 
 
 
 
 
+-- ========== ========== CREAÇAO TABELA complemanto ========== ==========  
 
 
 
+create table complemento (
+   idcomplemento integer not null,
+   nome varchar(30) not null,
+
+   constraint pk_cpl_idcomplemento primary key (idcomplemento),
+   constraint un_cpl_nome unique (nome)
+);
 
 
+insert into complemento (idcomplemento, nome)
+values (1, 'casa'),
+(2, 'Apartemanto');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select * from cliente;
+select * from complemento;
 
 
 
