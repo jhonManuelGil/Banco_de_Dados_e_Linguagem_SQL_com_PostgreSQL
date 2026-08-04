@@ -271,7 +271,7 @@ values (2, 'Italiana'),
 (3, 'Norte-americana'),
 (4, 'Alemã');
 
-select * from complemanto;
+select * from nacionalidade;
 
 
 
@@ -301,37 +301,59 @@ select * from complemento;
 
 
 
+-- ========== ========== CREAÇAO TABELA bairro ========== ==========  
+
+create table bairro(
+   idbairro integer not null,
+   nome varchar(30),
+
+   constraint pk_brr_idbairro primary key (idbairro),
+   constraint uni_brr_nome unique (nome)
+);
+
+
+insert into bairro (idbairro, nome)
+values 
+(1, 'Ciudade Nova'),
+(2, 'Centro'),
+(3, 'São Pedro'),
+(4, 'Santa Rosa');
+
+
+select * from bairro
 
 
 
+-- ========== ========== Ligação de TABELA Chaves Estrangeira ========== ==========  
 
 
+alter table cliente rename column profissao to idprofissao;
 
 
+select * from cliente;
 
 
+/*
+
+estudante 1, 9, 10, 12, 15, 17
+engenheiro 2
+pedreiro 3
+jornalista 4, 5
+professor 6, 7, 8, 13
+null 11, 14
+
+*/
+
+alter table cliente drop idprofissao; -- para apagar columna
+select * from cliente;
+
+-- se crea novamente
+alter table cliente add idprofissao integer;
 
 
+-- se crea novamente constraint chave foreign kay para relacionamiento ============
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+alter table cliente add constraint fk_cln_idprofissao foreign key (idprofissao) references profissao (idprofissao);
 
 
 
