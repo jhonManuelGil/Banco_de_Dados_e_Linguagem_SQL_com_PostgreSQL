@@ -195,7 +195,7 @@ delete from cliente where idcliente = 16;
 
 */
 
-/*1*/insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero, profissao, nacionalidade, logradouro, numero, complemanto, bairro, municipio, uf)
+/*1*/insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero, profissao, nacionalidade, logradouro, numero, complemento, bairro, municipio, uf)
 VALUES 
 (16, 'Maicon', '12349596421', '1234', '10/10/1965', 'F', 'null', 'null', 'null', null, 'null.', 'hull.', 'Florianópolis', 'PR'),					
 (17, 'Getúlio', 'null', '4631', '10/10/1958', 'F', 'Estudante', 'Brasileira', 'Rua Central', 343, 'Apartamento.', 'Centro.', 'Curitiba', 'SC'),						
@@ -263,8 +263,14 @@ create table nacionalidade(
 );
 
 
+select nome,idnacionalidade from cliente;
+
 insert into nacionalidade (idnacionalidade, nome)
+
 values (1, 'Brasileira');
+
+DELETE FROM nacionalidade
+WHERE idnacionalidade = 5;
 
 insert into nacionalidade (idnacionalidade, nome)
 values (2, 'Italiana'),
@@ -320,7 +326,7 @@ values
 (4, 'Santa Rosa');
 
 
-select * from bairro
+select * from bairro;
 
 
 
@@ -345,15 +351,165 @@ null 11, 14
 */
 
 alter table cliente drop idprofissao; -- para apagar columna
-select * from cliente;
+select nome, idprofissao from cliente;
 
 -- se crea novamente
 alter table cliente add idprofissao integer;
 
 
--- se crea novamente constraint chave foreign kay para relacionamiento ============
+-- se crea novamente constraint chave foreign kay para relacionamiento entre tabela profissao ============
 
 alter table cliente add constraint fk_cln_idprofissao foreign key (idprofissao) references profissao (idprofissao);
+
+
+update cliente set idprofissao = 1 where idcliente in (1, 9, 10, 12, 15, 17);
+update cliente set idprofissao = 2 where idcliente = 2;
+update cliente set idprofissao = 3 where idcliente = 3;
+update cliente set idprofissao = 4 where idcliente in (4, 5);
+update cliente set idprofissao = 5 where idcliente in (6, 7, 8, 13);
+
+
+-- Estudantes
+UPDATE cliente
+SET idprofissao = 1
+WHERE idcliente IN (1, 8, 15);
+
+-- Engenheiros
+UPDATE cliente
+SET idprofissao = 2
+WHERE idcliente IN (2, 6, 14);
+
+-- Pedreiros
+UPDATE cliente
+SET idprofissao = 3
+WHERE idcliente IN (4, 7, 10);
+
+-- Jornalistas
+UPDATE cliente
+SET idprofissao = 4
+WHERE idcliente IN (9, 11);
+
+-- Professores
+UPDATE cliente
+SET idprofissao = 5
+WHERE idcliente IN (3, 5, 13, 17);
+
+
+
+select * from profissao;
+
+
+
+-- se crea novamente constraint chave foreign kay para relacionamiento entre tabela nacionalidade ============
+/*
+Brasileira = 
+Brasileiro
+Alemã
+Norte americana
+
+
+*/
+
+alter table cliente drop column idnacionalidade;
+
+alter table cliente add idnacionalidade integer;
+alter table cliente add constraint fk_cln_idnacionalidade foreign key (idnacionalidade) references nacionalidade (idnacionalidade);
+-- Brasileiros / Brasileiras
+UPDATE cliente
+SET idnacionalidade = 1
+WHERE idcliente IN (1, 2, 3, 4, 6, 10, 11, 14, 17);
+
+-- Italianos / Italianas
+UPDATE cliente
+SET idnacionalidade = 2
+WHERE idcliente IN (5, 7);
+
+-- Norte-americana
+UPDATE cliente
+SET idnacionalidade = 3
+WHERE idcliente = 8;
+
+-- Alemães / Alemãs
+UPDATE cliente
+SET idnacionalidade = 4
+WHERE idcliente IN (9, 13);
+
+
+select * from cliente;
+select idcliente, nome, idnacionalidade from cliente order by idnacionalidade, nome, idnacionalidade asc;
+
+
+
+-- se crea novamente constraint chave foreign kay para relacionamiento entre tabela complemento ============
+
+
+
+alter table cliente drop complemento;
+
+
+alter table cliente add idcomplemento integer;
+alter table cliente add constraint fk_cln_idcomplemento foreign key (idcomplemento) references complemento (idcomplemento);
+
+
+
+UPDATE cliente
+SET idcomplemento = 1
+WHERE idcliente IN (1, 4, 9, 13);
+
+-- Apartamento
+UPDATE cliente
+SET idcomplemento = 2
+WHERE idcliente IN (2, 3, 7, 17);
+
+
+select * from cliente;
+select idcliente, nome, idcomplemento from cliente order by idcliente, nome, idcomplemento asc;
+
+
+
+
+-- se crea novamente constraint chave foreign kay para relacionamiento entre tabela bairro ============
+
+
+
+alter table cliente drop bairro;
+
+
+alter table cliente add idbairro integer;
+alter table cliente add constraint fk_cln_idbairro foreign key (idbairro) references bairro (idbairro);
+
+
+
+-- Cidade Nova
+UPDATE cliente
+SET idbairro = 1
+WHERE idcliente IN (1, 13);
+
+-- Centro
+UPDATE cliente
+SET idbairro = 2
+WHERE idcliente IN (3, 9, 17);
+
+-- São Pedro
+UPDATE cliente
+SET idbairro = 3
+WHERE idcliente IN (4, 5);
+
+-- Santa Rosa
+UPDATE cliente
+SET idbairro = 4
+WHERE idcliente = 7;
+
+
+
+SELECT *
+FROM cliente
+ORDER BY idcliente;
+select idcliente, nome, idbairro from cliente order by idcliente, nome, idbairro asc;
+
+
+
+
 
 
 
