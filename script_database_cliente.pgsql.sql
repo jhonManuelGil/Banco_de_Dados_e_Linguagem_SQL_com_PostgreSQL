@@ -50,7 +50,7 @@ VALUES
 (15, 'Jessica', NULL, NULL, NULL, 'F', 'Estudante', NULL, NULL, NULL, NULL, NULL, 'União da Vitória', 'PR');
 
 
-select * from cliente;
+select * from cliente;   
 
 -- ###### Consulta de filtro de valor de dados ######
 
@@ -360,13 +360,6 @@ alter table cliente add idprofissao integer;
 -- se crea novamente constraint chave foreign kay para relacionamiento entre tabela profissao ============
 
 alter table cliente add constraint fk_cln_idprofissao foreign key (idprofissao) references profissao (idprofissao);
-
-
-update cliente set idprofissao = 1 where idcliente in (1, 9, 10, 12, 15, 17);
-update cliente set idprofissao = 2 where idcliente = 2;
-update cliente set idprofissao = 3 where idcliente = 3;
-update cliente set idprofissao = 4 where idcliente in (4, 5);
-update cliente set idprofissao = 5 where idcliente in (6, 7, 8, 13);
 
 
 -- Estudantes
