@@ -431,6 +431,10 @@ WHERE idcliente IN (9, 13);
 select * from cliente;
 select idcliente, nome, idnacionalidade from cliente order by idnacionalidade, nome, idnacionalidade asc;
 
+alter table cliente drop column idnacionalidade;
+
+alter table cliente add idnacionalidade integer;
+alter table cliente add constraint fk_cln_idnacionalidade foreign key (idnacionalidade) references nacionalidade (idnacionalidade);
 
 
 -- se crea novamente constraint chave foreign kay para relacionamiento entre tabela complemento ============
@@ -501,27 +505,163 @@ ORDER BY idcliente;
 select idcliente, nome, idbairro from cliente order by idcliente, nome, idbairro asc;
 
 
-                             
+
+-- =========================================
+
+
+
+CREATE TABLE municipio (
+    idmunicipio integer not null,
+    nome VARCHAR(100) NOT NULL,
+
+	constraint pk_mcp_idmunicipio primary key (idmunicipio),
+  constraint un_mcp_nome unique (nome)
+    
+);
+
+
+-- 1. Agregar la columna que falta
+ALTER TABLE municipio ADD COLUMN uf VARCHAR(2);
+
+-- 2. Insertar los datos completos
+INSERT INTO municipio (idmunicipio, nome, uf)
+VALUES
+    (1, 'Porto União', 'SC'),
+    (2, 'Canoinhas', 'SC'),
+    (3, 'Porto Vitória', 'PR'),
+    (4, 'General Carneiro', 'PR'),
+    (5, 'São Paulo', 'SP'),
+    (6, 'Rio de Janeiro', 'RJ'),
+    (7, 'Uberlândia', 'MG'),
+    (8, 'Porto Alegre', 'RS'),
+    (9, 'União da Vitória', 'PR'),
+    (10, 'Curitiba', 'PR');
+
+ALTER TABLE municipio DROP COLUMN uf;
+select * from municipio
+
+-- Clientes de Porto União / Poro Uniao / PU
+UPDATE cliente SET idmunicipio = 1 WHERE idcliente IN (1, 2, 10, 11);
+
+-- Clientes de Canoinhas
+UPDATE cliente SET idmunicipio = 2 WHERE idcliente IN (3, 12);
+
+-- Cliente de Porto Vitória
+UPDATE cliente SET idmunicipio = 3 WHERE idcliente = 4;
+
+-- Cliente de General Carneiro
+UPDATE cliente SET idmunicipio = 4 WHERE idcliente = 5;
+
+-- Clientes de São Paulo
+UPDATE cliente SET idmunicipio = 5 WHERE idcliente IN (6, 13);
+
+-- Cliente de Rio de Janeiro
+UPDATE cliente SET idmunicipio = 6 WHERE idcliente = 7;
+
+-- Cliente de Uberlândia
+UPDATE cliente SET idmunicipio = 7 WHERE idcliente = 8;
+
+-- Cliente de Porto Alegre
+UPDATE cliente SET idmunicipio = 8 WHERE idcliente = 9;
+
+-- Clientes de União da Vitória
+UPDATE cliente SET idmunicipio = 9 WHERE idcliente IN (14, 15);
+
+-- Cliente de Curitiba
+UPDATE cliente SET idmunicipio = 10 WHERE idcliente = 17;
+
+
+
+
+select * from cliente;
+
+
+
+-- ===================  EXERCÍCIOS Criação de outras tabelas ======================                             
+
+
+
+create table fornecedor(
+  idfornecedor integer not null,
+  nome varchar(50) not null,
+
+  constraint pk_frn_idfornecedor primary key (idfornecedor),
+  constraint un_frn_nome unique (nome)
+);
+
+
+insert into fornecedor (idfornecedor, nome) 
+values 
+   (1, 'Cap. Cpmputadores'),
+   (2, 'AA. Computadores'),
+   (3, 'BB Máquinas Computadores');
+
+   
+Select * from fornecedor
+
+-- ======================================
+
+
+create table vendedor (
+   idvendedor integer not null,
+   nome varchar(50) not null, 
+
+   constraint pk_vnd_idvendedor primary key (idvendedor),
+   constraint un_vnd_nome unique (nome)
+);
+
+insert into vendedor (idvendedor, nome)
+values
+   (1, 'André'),
+   (2, 'Alisson'),
+   (3, 'José'),
+   (4, 'Ailton'),
+   (5, 'Maria'),
+   (6, 'Suelem'),
+   (7, 'Aline'),
+   (8, 'Silvana');
+
+
+Select * from vendedor
+
+
+-- ======================================
+
+create table transportadora (
+    idtransportadora integer not null,
+    idmunicipio integer,
+    nome varchar(50) not null,
+    logradouro varchar(50),
+    numero varchar(10),
+
+    constraint pk_trn_idtransportadora primary key (idtransportadora),
+    constraint fk_trn_idmunicipio foreign key (idmunicipio) references municipio (idmunicipio),
+    constraint un_trn_nome unique (nome)
+);
 
 
 
 
 
+Select * from 
+
+-- ======================================
+
+create table pruduto (
+  idpruduto integer not null,
+  idfornecedor integer not null,
+  nome varchar(50) not null,
+  valor varchar(10,2) not null,
+
+  constraint pk_pdt_idpruduto primary key (idpruduto),
+  constraint fk_pdt_idfornecedor foreign key (idpruduto),
+  constraint un_pdt_nome unique (nome)
+
+);
 
 
 
 
+Select * from 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- ======================================
