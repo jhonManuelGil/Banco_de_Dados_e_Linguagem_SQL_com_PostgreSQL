@@ -672,9 +672,9 @@ values
    ( 7, 1, 'Gabinete', 35);
 
 
+select * from pruduto
 
-
-  -- ==========================
+  -- ========================== table pedido 
 create table pedido (
 	idpedido integer not null,
 	idcliente integer not null,
@@ -688,6 +688,7 @@ create table pedido (
 	constraint fk_pdd_idtransportadora foreign key (idtransportadora) references transportadora (idtransportadora),
 	constraint fk_pdd_idvendedor foreign key (idvendedor) references vendedor (idvendedor)	
 );
+
    
 insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor)
 values (1, '2008-04-01', 1300, 1, 1, 1);
@@ -709,6 +710,6 @@ Insert into pedido (idpedido, data_pedido, valor, idcliente,idtransportadora, id
 Insert into pedido (idpedido, data_pedido, valor, idcliente,idtransportadora, idvendedor) values (15,'2008-04-25',200,11,null,5);
 
 
-Select * from pruduto
+Select * from pedido
 
 -- ======================================
