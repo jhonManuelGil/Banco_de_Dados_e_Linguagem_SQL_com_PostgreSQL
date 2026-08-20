@@ -1,0 +1,8 @@
+"idpruduto","idfornecedor","nome","valor"
+1,1,"Microcomputador","800"
+2,1,"Monitor","500"
+3,2,"Placa mãe","200"
+4,2,"HD","150"
+5,2,"Placa de vídeo","200"
+6,3,"Memória RAM","100"
+7,1,"Gabinete","35"
